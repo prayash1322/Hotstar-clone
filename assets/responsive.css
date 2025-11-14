@@ -132,9 +132,9 @@
     margin-left: 5px;
   }
 
+  /* THIS IS THE FIX: Changed z-index from 10 to 99 */
   .poster-item:hover {
-    transform: none;
-    z-index: 10;
+    z-index: 99;
   }
 
   .poster-item {
