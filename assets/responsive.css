@@ -1,0 +1,254 @@
+@media (max-width: 1535px) {
+  .poster-item {
+    /* Go from 7 columns to 6 columns */
+    width: calc((100% - 48px) / 6);
+    height: auto; /* CRITICAL: Override 280px */
+    aspect-ratio: 2/3; /* CRITICAL: Maintain poster shape */
+  }
+}
+
+/*
+  Breakpoint 2: Standard Laptops (1280px)
+*/
+@media (max-width: 1280px) {
+  .hero-bg {
+    height: 700px;
+  }
+  .hero-content {
+    width: 45%;
+  }
+  .poster-item {
+    /* Go from 6 columns to 5 columns */
+    width: calc((100% - 40px) / 5);
+    height: auto; /* CRITICAL: Override 280px */
+    aspect-ratio: 2/3; /* CRITICAL: Maintain poster shape */
+  }
+
+  /* Adjust hover-card position for center-aligned items */
+  .poster-overlay-c {
+    left: 40%;
+  }
+}
+
+/*
+  Breakpoint 3: Tablet (Landscape) (1024px)
+*/
+@media (max-width: 1024px) {
+  /* Make the fixed sidebar thinner */
+  header {
+    padding: 25px 15px;
+  }
+  .logo a img {
+    width: 45px;
+  }
+  nav ul li a {
+    padding: 12px 10px;
+  }
+  main {
+    /* Adjust main margin to match new thinner sidebar */
+    margin-left: 75px;
+  }
+  .hero-bg {
+    height: 600px;
+  }
+  .hero-content {
+    width: 50%;
+  }
+  .poster-item {
+    /* Go from 5 columns to 4 columns */
+    width: calc((100% - 32px) / 4);
+    height: auto; /* CRITICAL: Override 280px */
+    aspect-ratio: 2/3; /* CRITICAL: Maintain poster shape */
+    margin-bottom: 20px; /* ADDED: Vertical space for wrapped rows */
+  }
+
+  /* Center all hover cards, as edge detection is less reliable */
+  .poster-overlay,
+  .poster-overlay-r,
+  .poster-overlay-c {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  .poster-item:hover .poster-overlay,
+  .poster-item:hover .poster-overlay-r,
+  .poster-item:hover .poster-overlay-c {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/*
+  Breakpoint 4: Tablet (Portrait) (768px)
+  THE MAJOR LAYOUT CHANGE
+*/
+@media (max-width: 768px) {
+  /*
+    This is the most important change.
+    The fixed vertical sidebar is converted to a horizontal top bar.
+  */
+  header {
+    position: relative; /* Un-fix the header */
+    height: auto; /* Allow it to size to content */
+    width: 100%;
+    padding: 15px 20px;
+    z-index: 100;
+  }
+
+  /* Change the header's .row to be a horizontal flex row */
+  header .row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+  }
+
+  .logo a img {
+    width: 40px;
+  }
+
+  /* Convert the vertical nav to horizontal */
+  nav {
+    width: auto;
+  }
+  nav ul {
+    position: static;
+    flex-direction: row;
+    transform: none;
+    margin-top: 0;
+  }
+  nav ul li a {
+    padding: 5px 10px;
+    font-size: 18px; /* Make icons slightly smaller */
+  }
+
+  /* --- Main Content --- */
+  main {
+    margin-left: 0; /* Remove the sidebar margin */
+    padding: 10px;
+  }
+  .hero-bg {
+    height: 500px;
+    padding: 20px 0;
+    border-radius: 6px; /* Ensure radius is still applied */
+    background-attachment: scroll; /* 'fixed' is bad on mobile */
+  }
+  .hero-content {
+    width: 85%;
+    padding-left: 20px;
+  }
+  .hero-content img {
+    width: 200px; /* Control logo size */
+  }
+  .hero-content h3 {
+    font-size: 12px;
+  }
+  .hero-content p {
+    font-size: 14px;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; /* Show only 2 lines */
+    margin-bottom: 20px;
+  }
+  .btn {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  /* --- Poster Shows --- */
+  .poster-shows h3 {
+    font-size: 18px;
+    margin-left: 5px;
+  }
+
+  /*
+    CRITICAL FIX for "overlapping elements" on mobile:
+    Disable the complex hover effect on tablets and phones.
+    It is not touch-friendly and breaks the layout.
+  */
+  .poster-overlay,
+  .poster-overlay-c,
+  .poster-overlay-r {
+    display: none;
+  }
+  .poster-item:hover {
+    transform: none;
+    z-index: 0;
+  }
+
+  .poster-item {
+    /* Go from 4 columns to 3 columns */
+    width: calc((100% - 24px) / 3);
+    height: auto; /* CRITICAL: Override 280px */
+    aspect-ratio: 2/3; /* CRITICAL: Maintain poster shape */
+    margin-bottom: 16px; /* ADDED: Vertical space for wrapped rows */
+  }
+}
+
+/*
+  Breakpoint 5: Mobile Phones (Large) (500px)
+*/
+@media (max-width: 500px) {
+  /* --- Header --- */
+  header {
+    padding: 10px 15px;
+  }
+  nav ul li a {
+    padding: 5px 8px;
+    font-size: 16px;
+  }
+
+  /* --- Hero --- */
+  .hero-bg {
+    height: 400px;
+  }
+  .hero-content {
+    width: 95%;
+    padding-left: 15px;
+  }
+  .hero-content img {
+    width: 150px;
+  }
+  /* Hide the <p> tag completely on phones */
+  .hero-content p {
+    display: none;
+  }
+
+  /* --- Poster Shows --- */
+  .poster-item {
+    /* Go from 3 columns to 2 columns */
+    width: calc((100% - 16px) / 2);
+    height: auto; /* CRITICAL: Override 280px */
+    aspect-ratio: 2/3; /* CRITICAL: Maintain poster shape */
+    margin-bottom: 16px; /* ADDED: Vertical space */
+  }
+}
+
+/*
+  Breakpoint 6: Mobile Phones (Small) (380px)
+*/
+@media (max-width: 380px) {
+  header {
+    padding: 10px 5px; /* Tighter header padding */
+  }
+  nav ul li a {
+    padding: 5px; /* Tighter icon padding */
+  }
+  .logo a img {
+    width: 35px;
+  }
+
+  .hero-bg {
+    height: 350px;
+  }
+  .hero-content {
+    width: 98%;
+    padding-left: 10px;
+  }
+
+  .poster-item {
+    margin-right: 10px; /* UPDATED: Increased horizontal gap */
+    margin-bottom: 10px; /* UPDATED: Tighter vertical gap */
+    /* Adjust 2-column calc for new margin */
+    width: calc((100% - 20px) / 2);
+    height: auto; /* CRITICAL: Override 280px */
+    aspect-ratio: 2/3; /* CRITICAL: Maintain poster shape */
+  }
+}
